@@ -22,10 +22,14 @@ use App\Http\Controllers\admin\UserController as AdminUserController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/admin/login',[AdminController::class,'login'])->name('admin.login');
+Route::post('/check/login',[AdminController::class,'doLogin'])->name('admin.doLogin');
+Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
 
-Route::get('/', [AdminController::class, 'index'])->name('admin.index');
 
+Route::get('/home', [AdminController::class, 'index'])->name('admin.index');
 
+Route::get('/logout',[AdminController::class,'logout'])->name('logout');
 
 
 //Role using 'resources'
@@ -114,4 +118,4 @@ Route::controller(CategoryController::class)->group(function () {
 
 // Route::get('/donationform', [AdminController::class, 'CreateDonation'])->name('create.donation');
 
-
+});
