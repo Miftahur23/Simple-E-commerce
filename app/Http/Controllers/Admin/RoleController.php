@@ -113,4 +113,11 @@ class RoleController extends Controller
         return redirect()->route('roles.index');
 
     }
+    public function viewAssignPermission($id)
+    {
+        // dd($id);
+        $view=RolePermission::find($id);
+        // dd($view);
+        return view('admin.pages.role.view',compact('view'));
+    }
 }

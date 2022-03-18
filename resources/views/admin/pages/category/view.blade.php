@@ -6,5 +6,4 @@
 <p><b>Name: {{$category->name}}</b></p>
 <p><b>Details:{{$category->details}}</b></p>
 
-
-@endsection
+@endsection 

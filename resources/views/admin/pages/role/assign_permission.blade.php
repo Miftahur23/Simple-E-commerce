@@ -13,7 +13,7 @@
                   <hr>
                     @foreach($module->assign_permissions as $permission)
                       <div class="form-check">
-                          <input name="assign_permissions[]" class="form-check-input" type="checkbox" value="{{$permission->id}}" id="flexCheckDefault">
+                          <input name="assign_permissions[]" type="checkbox"  value="{{($permission->slug =='showcategory' ? 'checked' : '') }}" id="flexCheckDefault">
                           <label class="form-check-label" for="flexCheckDefault">
                             {{ucfirst(str_replace('.',' ',$permission->name))}}
                           </label>

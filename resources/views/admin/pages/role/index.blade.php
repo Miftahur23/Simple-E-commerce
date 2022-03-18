@@ -43,7 +43,7 @@
           </td>        
           <td>{{$role->status}}</td>  
           <td>
-              <a href="#"><i class="fas fa-eye"></i></a>   
+              <a href="{{route('view.assign.permission',$role->id)}}"><i class="fas fa-eye"></i></a>   
               <a href="{{route('assign.permission',$role->id)}}"><i class="fas fa-edit"></i>Assign Permission</a>
               <a href="#"><i class="fas fa-trash"></i></a>
           </td> 

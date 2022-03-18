@@ -37,6 +37,7 @@ Route::controller(RoleController::class)->group(function () {
     Route::post('/store_permision','storePermission')->name('store.permission');
     Route::get('/assign_permision/edit','editPermission')->name('edit.permission');
     Route::put('/assign_permision/update','updatePermission')->name('update.permission');
+    Route::get('/view/assign/permission/list/{id}',[RoleController::class,'viewAssignPermission'])->name('view.assign.permission');
 });
 
 // Volunteer
