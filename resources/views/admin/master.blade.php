@@ -13,7 +13,7 @@
     </head>
     <body class="sb-nav-fixed">
         @include('admin.partials.header')
-    
+
         <div id="layoutSidenav">
             @include('admin.partials.sidebar')
             <div id="layoutSidenav_content">
@@ -23,7 +23,7 @@
                 <footer class="py-4 bg-light mt-auto">
                     <div class="container-fluid px-4">
                         <div class="d-flex align-items-center justify-content-between small">
-                            <div class="text-muted">Copyright &copy; Krafty</div>
+                            <div class="text-muted">Copyright &copy; Ecommerce</div>
                             <div>
                                 <a href="#">Privacy Policy</a>
                                 &middot;
