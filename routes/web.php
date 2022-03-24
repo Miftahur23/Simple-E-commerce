@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\admin\HomeController;
 use App\Http\Controllers\admin\RoleController;
 use App\Http\Controllers\admin\AdminController;
@@ -29,13 +30,14 @@ Route::post('/check/login',[AdminController::class,'doLogin'])->name('admin.doLo
 Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
 
 
-Route::get('/home', [AdminController::class, 'index'])->name('admin.index');
+Route::get('/home', [AdminController::class, 'index'])->name('index');
 
 Route::get('/logout',[AdminController::class,'logout'])->name('logout');
 
 
 //Role using 'resources'
 Route::resource('roles',RoleController::class);
+Route::resource('products',ProductsController::class);
 
 
 Route::controller(RoleController::class)->group(function () {
@@ -50,10 +52,10 @@ Route::controller(RoleController::class)->group(function () {
 
 //     Route::controller(VolunteerController::class)->group(function () {
 
-//     Route::get('/showvoluteer','showVolunteer')->name('show.volunteer'); 
-//     Route::get('/createvolunteer','creatVolunteer')->name('create.volunteer'); 
-//     Route::post('/storevoluteer','storeVolunteer')->name('store.volunteer'); 
-//     Route::get('/viewvoluteer/{id}','ViewVolunteerProfile')->name('view.volunteer'); 
+//     Route::get('/showvoluteer','showVolunteer')->name('show.volunteer');
+//     Route::get('/createvolunteer','creatVolunteer')->name('create.volunteer');
+//     Route::post('/storevoluteer','storeVolunteer')->name('store.volunteer');
+//     Route::get('/viewvoluteer/{id}','ViewVolunteerProfile')->name('view.volunteer');
 //     Route::get('/Edit/VolunteerProfile/{volunteer_id}','editVolunteerProfile')->name('edit.volunteer');
 //     Route::put('/Update/VolunteerProfile/{volunteer_id}','UpdateVolunteerProfile')->name('update.volunteer');
 //     Route::get('/deletevoluteer/{id}','DeleteVolunteerProfile')->name('delete.volunteer');
@@ -65,16 +67,16 @@ Route::controller(RoleController::class)->group(function () {
 
 Route::controller(CategoryController::class)->group(function () {
 
-    Route::get('/showcategory','showcategory')->name('show.category');  
-    Route::get('/createcategory','creatcategory')->name('create.category'); 
-    Route::post('/storecategory','storecategory')->name('store.category'); 
+    Route::get('/showcategory','showcategory')->name('show.category');
+    Route::get('/createcategory','creatcategory')->name('create.category');
+    Route::post('/storecategory','storecategory')->name('store.category');
 
     // Category view,update,delete
 
-    Route::get('/viewcategory/{id}','Viewcategory')->name('view.category'); 
+    Route::get('/viewcategory/{id}','Viewcategory')->name('view.category');
     Route::get('/Edit/category/{categoryr_id}','editcategory')->name('edit.category');
     Route::put('/Update/category/{categoryr_id}','Updatecategory')->name('update.category');
-    Route::get('/deletecategoryr/{id}','Deletecategory')->name('delete.category'); 
+    Route::get('/deletecategoryr/{id}','Deletecategory')->name('delete.category');
 
 });
 
@@ -103,7 +105,7 @@ Route::controller(CategoryController::class)->group(function () {
 // Donor
 
 // Route::controller(DonorController::class)->group(function () {
-    
+
 //     Route::get('/donorform','CreateDonor')->name('create.donor');
 //     Route::post('/donorstore','StoreDonor')->name('store.donor');
 //     Route::get('/donorlist','DonorList')->name('list.donor');
