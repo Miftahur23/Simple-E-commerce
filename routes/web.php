@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Admin\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,5 +14,8 @@ use App\Http\Controllers\Admin\AdminController;
 */
 
 
+Route::view('/', 'admin.master')->name('root');
+Route::view('/krafty', 'website.master')->name('website');
+Route::view('/home', 'admin.home')->name('home');
+Route::view('/customer', 'admin.customer')->name('customers');
 
-Route::get('/', [AdminController::class, 'index'])->name('admin.index');
