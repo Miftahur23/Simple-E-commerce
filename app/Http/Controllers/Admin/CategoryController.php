@@ -15,28 +15,24 @@ class CategoryController extends Controller
 
      public function showcategory()
      {
-      
-         $category=Category::all();
+
+        $category=Category::all();
 
        return view('admin.pages.category.list',compact('category'));
 
       }
- 
+
      //Creating Category through Form
      public function creatcategory()
      {
-      
-
        return view('admin.pages.category.create');
-
       }
- 
+
       //storing Category Data through Form
      public function storecategory(Request $request)
      {
-      
+
         {
-           
             $request->validate([
               'name'=>'required',
               'details'=>'required',
@@ -52,10 +48,10 @@ class CategoryController extends Controller
          return redirect()->route('show.category')->with('success','Category  has been created successfully.');
 
         }
-  
+
       }
- 
-       //View Category 
+
+       //View Category
       public function Viewcategory($id)
       {
           $category=Category::find($id);
@@ -63,8 +59,8 @@ class CategoryController extends Controller
           return view('admin.pages.category.view', compact('category'));
 
       }
- 
-       //Update Category 
+
+       //Update Category
       public function editcategory($categoryr_id)
       {
           $category=Category::find($categoryr_id);
@@ -74,23 +70,23 @@ class CategoryController extends Controller
       }
       public function Updatecategory(Request $request,$categoryr_id)
       {
-      
-      
+
+
           $category=Category::find($categoryr_id);
           $category->update([
-         
+
              'name'=>$request->name,
              'details'=>$request->details,
          ]);
 
         //  Toastr::success('Category Updated Successfully', 'success');
 
-       
+
          return redirect()->route('show.category');
 
       }
- 
-      //Delete Category 
+
+      //Delete Category
       public function Deletecategory($id)
       {
         Category::find($id)->delete();
@@ -100,8 +96,8 @@ class CategoryController extends Controller
 
           return redirect()->back();
       }
- 
- 
- 
-      
+
+
+
+
 }

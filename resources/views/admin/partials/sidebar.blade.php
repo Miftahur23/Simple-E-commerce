@@ -12,11 +12,11 @@
                     Customers
                 </a>
 
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{route('products.index')}}">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                    Furnitures
+                    Products
                 </a>
-                
+
                 <a class="nav-link" href="{{route('show.category')}}">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Catagories
@@ -25,12 +25,12 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Roles
                 </a>
-                
+
                 <a class="nav-link" href="#">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Orders
-                </a>  
-                
+                </a>
+
             </div>
         </div>
     </nav>

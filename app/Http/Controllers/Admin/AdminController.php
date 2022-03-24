@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class AdminController extends Controller
 {
 
-    
+
 
     public function index()
     {
@@ -24,7 +24,7 @@ class AdminController extends Controller
         $userInfo=$req->except('_token');
 
         if(Auth::attempt($userInfo)){
-            return redirect()->route('admin.index')->with('message','Login successful.');
+            return view('admin.master')->with('message','Login successful.');
         }
         return redirect()->back()->with('error','Invalid user credentials');
     }
