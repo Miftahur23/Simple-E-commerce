@@ -84,16 +84,13 @@
       @endif
     
     
-      <form class="box" action="{{route('admin.doLogin')}}"  method="post">
+      <form class="box" action="#"  method="post">
     
         @csrf
-        <h1>Login</h1>
-        <input type="text" name="email" placeholder="Username">
-        <input type="password" name="password" placeholder="Password">
-        <input type="submit" name="" value="Login">
-        <div>
-          <a style="text-decoration: none;" href="{{route('admin.forget.password')}}" class="txt3">
-              Forgot Password?
-          </a>
-      </div>
+        <h1>Enter To Reset Your Password</h1>
+        <input type="password" name="password" placeholder="New Password">
+        <input type="password" name="confirmation_password" placeholder="Confirm New Password">
+
+        <input type="submit" name="" value="Submit">
+     
       </form>

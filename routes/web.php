@@ -5,11 +5,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\admin\HomeController;
 use App\Http\Controllers\admin\RoleController;
-use App\Http\Controllers\admin\AdminController;
+// use App\Http\Controllers\admin\AdminController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\admin\CauseController;
 use App\Http\Controllers\admin\DonorController;
 use App\Http\Controllers\website\UserController;
 use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\Admin\PassResetController;
 use App\Http\Controllers\admin\VolunteerController;
 use App\Http\Controllers\admin\UserController as AdminUserController;
 
@@ -27,6 +29,17 @@ use App\Http\Controllers\admin\UserController as AdminUserController;
 */
 Route::get('/admin/login',[AdminController::class,'login'])->name('admin.login');
 Route::post('/check/login',[AdminController::class,'doLogin'])->name('admin.doLogin');
+Route::controller(PassResetController::class)->group(function()
+//forget password
+{
+Route::get('admin/forget-password','forgetPassword')->name('admin.forget.password');
+Route::post('admin/forget-password','forgetPasswordEmailPost')->name('admin.forget.password.post');
+Route::get('admin/reset-password','resetPassword')->name('admin.reset.password');
+Route::post('admin/reset-password/{token}','resetPasswordPost')->name('admin.reset.password.post');
+
+
+
+});
 Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
 
 
@@ -83,6 +96,7 @@ Route::controller(CategoryController::class)->group(function () {
 
 
 
+
 // Cause
 
 // Route::controller(CauseController::class)->group(function () {
@@ -118,7 +132,6 @@ Route::controller(CategoryController::class)->group(function () {
 //     Route::get('/donordelete/{donor_id}','DonorDelete')->name('delete.donor');
 
 // });
-
 
 
 Route::view('/', 'admin.master')->name('root');
