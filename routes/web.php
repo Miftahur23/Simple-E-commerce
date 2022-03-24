@@ -3,11 +3,13 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\HomeController;
 use App\Http\Controllers\admin\RoleController;
-use App\Http\Controllers\admin\AdminController;
+// use App\Http\Controllers\admin\AdminController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\admin\CauseController;
 use App\Http\Controllers\admin\DonorController;
 use App\Http\Controllers\website\UserController;
 use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\Admin\PassResetController;
 use App\Http\Controllers\admin\VolunteerController;
 use App\Http\Controllers\admin\UserController as AdminUserController;
 
@@ -24,6 +26,17 @@ use App\Http\Controllers\admin\UserController as AdminUserController;
 */
 Route::get('/admin/login',[AdminController::class,'login'])->name('admin.login');
 Route::post('/check/login',[AdminController::class,'doLogin'])->name('admin.doLogin');
+Route::controller(PassResetController::class)->group(function()
+//forget password
+{
+Route::get('admin/forget-password','forgetPassword')->name('admin.forget.password');
+Route::post('admin/forget-password','forgetPasswordEmailPost')->name('admin.forget.password.post');
+Route::get('admin/reset-password','resetPassword')->name('admin.reset.password');
+Route::post('admin/reset-password/{token}','resetPasswordPost')->name('admin.reset.password.post');
+
+
+
+});
 Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
 
 
@@ -78,42 +91,6 @@ Route::controller(CategoryController::class)->group(function () {
 
 
 
-
-// Cause
-
-// Route::controller(CauseController::class)->group(function () {
-
-//     Route::get('/cause','cause')->name('cause.list');
-//     Route::get('/create/cause','createCause')->name('create.cause');
-//     Route::post('/store/cause','storeCause')->name('store.cause');
-
-    // Cause view,update,delete
-
-//     Route::get('/view/cause/{cause_id}','viewCause')->name('view.cause');
-//     Route::get('/edit/cause/{cause_id}','editCause')->name('edit.cause');
-//     Route::put('/update/cause/{cause_id}','updateCause')->name('update.cause');
-//     Route::get('/delete/cause/{cause_id}','deleteCause')->name('delete.cause');
-
-// });
-
-
-
-// Donor
-
-// Route::controller(DonorController::class)->group(function () {
-    
-//     Route::get('/donorform','CreateDonor')->name('create.donor');
-//     Route::post('/donorstore','StoreDonor')->name('store.donor');
-//     Route::get('/donorlist','DonorList')->name('list.donor');
-
-    // Donor view,update,delete
-
-//     Route::get('/donorview/{donor_id}','DonorView')->name('view.donor');
-//     Route::get('/donoredit/{donor_id}','DonorEdit')->name('edit.donor');
-//     Route::put('/donorupdate/{donor_id}','DonorUpdate')->name('update.donor');
-//     Route::get('/donordelete/{donor_id}','DonorDelete')->name('delete.donor');
-
-// });
 
 
 // Route::get('/donationform', [AdminController::class, 'CreateDonation'])->name('create.donation');

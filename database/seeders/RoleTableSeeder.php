@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\Role;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-class UsersTableSeeder extends Seeder
+class RoleTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,12 +15,9 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            'name'=>'sara',
-            'email'=>'sara@gmail.com',
-            'password'=>bcrypt('sara123'),
-            'role_id'=>1,
-
+        Role::create([
+            'name'=>'admin',
+            'slug'=>'admin',
         ]);
     }
 }

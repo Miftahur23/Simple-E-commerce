@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('permissions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('module_id')->constrained('Modules')->restictionOnDelete(); 
+            $table->foreignId('module_id')->constrained('modules')->restrictOnDelete(); 
             $table->string('name');
             $table->string('slug');
             $table->string('status')->default('Active');
