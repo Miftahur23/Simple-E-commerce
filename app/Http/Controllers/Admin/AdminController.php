@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
+
+    
+
     public function index()
     {
         return view('admin.master');
@@ -30,5 +33,6 @@ class AdminController extends Controller
         Auth::logout();
         return redirect()->route('admin.login')->with('message','Logged out.');
     }
+
 
 }

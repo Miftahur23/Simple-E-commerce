@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\admin\HomeController;
 use App\Http\Controllers\admin\RoleController;
 use App\Http\Controllers\admin\AdminController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\website\UserController;
 use App\Http\Controllers\admin\CategoryController;
 use App\Http\Controllers\admin\VolunteerController;
 use App\Http\Controllers\admin\UserController as AdminUserController;
+
 
 
 /*
@@ -116,6 +118,14 @@ Route::controller(CategoryController::class)->group(function () {
 // });
 
 
+
+Route::view('/', 'admin.master')->name('root');
+Route::view('/krafty', 'website.master')->name('website');
+Route::view('/home', 'admin.home')->name('home');
+Route::view('/customer', 'admin.customer')->name('customers');
+
+
 // Route::get('/donationform', [AdminController::class, 'CreateDonation'])->name('create.donation');
 
 });
+
