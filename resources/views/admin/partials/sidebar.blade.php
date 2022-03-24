@@ -17,9 +17,13 @@
                     Furnitures
                 </a>
                 
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{route('show.category')}}">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Catagories
+                </a>
+                <a class="nav-link" href="{{route('roles.index')}}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    Roles
                 </a>
                 
                 <a class="nav-link" href="#">
