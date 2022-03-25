@@ -84,12 +84,16 @@
       @endif
     
     
-      <form class="box" action="#"  method="post">
+      <form class="box" action="{{route('admin.reset.password.post')}}"  method="post">
     
         @csrf
+        @if(session()->has('msg'))
+                    <p class="alert alert-danger"><b>{{session()->get('msg')}}</b></p>
+                @endif
         <h1>Enter To Reset Your Password</h1>
+        <input type="hidden" name="reset_token" value="{{$token}}">
         <input type="password" name="password" placeholder="New Password">
-        <input type="password" name="confirmation_password" placeholder="Confirm New Password">
+        <input type="password" name="password_confirmation" placeholder="Confirm New Password">
 
         <input type="submit" name="" value="Submit">
      

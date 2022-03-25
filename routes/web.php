@@ -10,7 +10,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\admin\CauseController;
 use App\Http\Controllers\admin\DonorController;
 use App\Http\Controllers\website\UserController;
-use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\PassResetController;
 use App\Http\Controllers\admin\VolunteerController;
 use App\Http\Controllers\admin\UserController as AdminUserController;
@@ -34,8 +34,8 @@ Route::controller(PassResetController::class)->group(function()
 {
 Route::get('admin/forget-password','forgetPassword')->name('admin.forget.password');
 Route::post('admin/forget-password','forgetPasswordEmailPost')->name('admin.forget.password.post');
-Route::get('admin/reset-password','resetPassword')->name('admin.reset.password');
-Route::post('admin/reset-password/{token}','resetPasswordPost')->name('admin.reset.password.post');
+Route::get('admin/reset-password/{token}','resetPassword')->name('admin.reset.password');
+Route::post('admin/reset-password','resetPasswordPost')->name('admin.reset.password.post');
 
 
 
