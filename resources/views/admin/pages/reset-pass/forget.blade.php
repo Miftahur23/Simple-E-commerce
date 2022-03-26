@@ -86,7 +86,11 @@
     
       <form class="box" action="{{route('admin.forget.password.post')}}"  method="post">
     
+    
         @csrf
+        @if(session()->has('msg'))
+                    <p class="alert alert-danger"><b>{{session()->get('msg')}}</b></p>
+                @endif
         <h1>Enter Email</h1>
         <input type="text" name="email" placeholder="your email">
         <input type="submit" name="" value="Submit">
