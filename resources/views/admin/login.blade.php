@@ -91,6 +91,8 @@
         <input type="text" name="email" placeholder="Username">
         <input type="password" name="password" placeholder="Password">
         <input type="submit" name="" value="Login">
+        <a href="{{route('login.facebook')}}" style="text-decoration: none;">Login With Facebook</a><br><br>
+        
         <div>
           <a style="text-decoration: none;" href="{{route('admin.forget.password')}}" class="txt3">
               Forgot Password?

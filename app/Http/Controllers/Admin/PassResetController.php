@@ -34,7 +34,8 @@ class PassResetController extends Controller
         $link=route('admin.reset.password',$token);
         // dd($link);
         //  creating instance
-         Mail::to($req->email)->send(new ResetPassEmail($link));
+        Mail::to($req->email)->send(new ResetPassEmail($link));
+
         return redirect()->back()->with('msg','Email sent to : '. $req->email);
 
 

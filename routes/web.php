@@ -37,9 +37,12 @@ Route::post('admin/forget-password','forgetPasswordEmailPost')->name('admin.forg
 Route::get('admin/reset-password/{token}','resetPassword')->name('admin.reset.password');
 Route::post('admin/reset-password','resetPasswordPost')->name('admin.reset.password.post');
 
-
-
 });
+
+//socialite
+Route::get('auth/facebook', [AdminController::class, 'facebookRedirect'])->name('login.facebook');
+Route::get('auth/facebook/callback', [AdminController::class, 'loginWithFacebook']);
+
 Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
 
 
