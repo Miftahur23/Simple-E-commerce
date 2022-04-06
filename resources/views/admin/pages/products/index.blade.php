@@ -41,6 +41,7 @@
                     <th scope="col">Category</th>
                     <th scope="col">Price</th>
                     <th scope="col">Details</th>
+                    <th scope="col">Action</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -53,6 +54,9 @@
                             <td>{{$value->category}}</td>
                             <td>{{$value->price}}</td>
                             <td>{{$value->details}}</td>
+                            <td>
+                              <a class="btn btn-success btn-sm" href="{{route('products.show',$value->id)}}"><i class="fas fa-eye"></i></a> 
+                            </td>
                           </tr>
 
                   @endforeach

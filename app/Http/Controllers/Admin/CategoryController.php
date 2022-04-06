@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Yajra\Datatables\Datatables;
 
 // use Brian2694\Toastr\Facades\Toastr;
 
@@ -20,6 +21,20 @@ class CategoryController extends Controller
 
        return view('admin.pages.category.list',compact('category'));
 
+      }
+      public function yajraCategory(Request $request)
+      {
+        if ($request->ajax()) {
+          $data = Category::latest()->get();
+          return Datatables::of($data)
+              ->addIndexColumn()
+              ->addColumn('action', function($row){
+                  $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
+                  return $actionBtn;
+              })
+              ->rawColumns(['action'])
+              ->make(true);
+      }
       }
 
      //Creating Category through Form

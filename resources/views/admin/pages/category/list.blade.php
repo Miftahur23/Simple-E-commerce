@@ -3,7 +3,11 @@
 
 <h1>Categories</h1>
 <hr>
-
+{{-- Resources for yajra datatable --}}
+{{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"/> --}}
+<link href="http://cdn.datatables.net/1.10.7/css/jquery.dataTables.min.css" rel="stylesheet">
+{{-- <link href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css" rel="stylesheet"> --}}
+</head>
  {{-- <a href="{{route('create.category')}}" button type="submit" class="btn btn-primary">Create Category</button> </a> --}}
 <div style="padding-left: 250px; padding-right: 250px; text-align:center;">
   <form action="{{route('store.category')}}" method="POST">
@@ -24,7 +28,7 @@
 <hr>
 
 <div>
-              <table class="table" style="text-align: center;">
+              <table class="table yajra-datatable" style="text-align: center;">
                 <thead class="thead-dark">
                   <tr>
                     <th scope="col">ID</th>
@@ -34,22 +38,40 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach($category as $key=>$value) 
-
-                          <tr>
-                            {{-- @dd($volunteers) --}}
-                            <th>{{$key+1}}</th>
-                            <td>{{$value->name}}</td>
-                            <td>{{$value->details}}</td>  
-                            <td>
-                              <a class="btn btn-success btn-sm" href="{{route('view.category',$value->id)}}"><i class="fas fa-eye"></i></a>  
-                              <a class="btn btn-warning btn-sm" href="{{route('edit.category',$value->id)}}"><i class="fas fa-edit"></i></a>
-                              <a class="btn btn-danger btn-sm" href="{{route('delete.category',$value->id)}}"><i class="fas fa-trash"></i></a>
-                            </td>  
-                          </tr>
-                    
-                  @endforeach
+                 
                 </tbody>
               </table>
+             
 </div>
+@push('js')
+ <!-- jQuery -->
+ <script src="//code.jquery.com/jquery.js"></script>
+ <!-- DataTables -->
+ <script src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
+ <!-- Bootstrap JavaScript -->
+ <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+  
+  $(function () {
+    
+    var table = $('.yajra-datatable').DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: "{{ route('yajra.category') }}",
+        columns: [
+            {data: 'DT_RowIndex', name: 'DT_RowIndex'},
+            {data: 'name', name: 'name'},
+            {data: 'details', name: 'details'},
+            {
+                data: 'action', 
+                name: 'action', 
+                orderable: true, 
+                searchable: true
+            },
+        ]
+    });
+    
+  });
+</script>
+@endpush
 @endsection

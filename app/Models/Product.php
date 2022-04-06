@@ -9,6 +9,7 @@ class Product extends Model
 {
     use HasFactory;
     protected $guarded=[];
+    
    public function setNameAttribute($name)
    {
        $this->attributes['name']=strtoupper($name);
