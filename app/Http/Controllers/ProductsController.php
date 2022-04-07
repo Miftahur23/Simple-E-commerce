@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Http\Requests\ProductRequest;
+use App\Repositories\ProductRepository;
 
 class ProductsController extends Controller
 {
@@ -34,16 +36,12 @@ class ProductsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProductRequest $request, ProductRepository $product_create)
     {
         {
+            $product_create->store($request);
 
-        Product::create([
-             'name'=>$request->name,
-             'category'=>$request->category,
-             'price'=>$request->price,
-             'details'=>$request->details,
-         ]);
+      
 
         //  Toastr::success('Category Created Successfully', 'success');
 
@@ -59,9 +57,10 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($id,ProductRepository $product_repository)
     {
-        //
+        $product=$product_repository->find($id);
+        return view('admin.pages.products.view',compact('product'));
     }
 
     /**
@@ -72,7 +71,7 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        //
+       
     }
 
     /**

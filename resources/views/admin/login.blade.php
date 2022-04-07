@@ -92,6 +92,9 @@
         <input type="password" name="password" placeholder="Password">
         <input type="submit" name="" value="Login">
         <a href="{{route('login.facebook')}}" style="text-decoration: none;">Login With Facebook</a><br><br>
+        <a href="{{route('login.github')}}" style="text-decoration: none;">Login With Github</a><br><br>
+        <a href="#" style="text-decoration: none;">Login With Linkedin</a><br><br>
+
         
         <div>
           <a style="text-decoration: none;" href="{{route('admin.forget.password')}}" class="txt3">

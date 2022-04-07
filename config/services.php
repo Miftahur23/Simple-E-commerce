@@ -33,9 +33,15 @@ return [
 
     
     'facebook' => [
-        'client_id' => '987735711879609',
-        'client_secret' => '3e3aaacee7cc85f42bf959f341ac1fa3',
-        'redirect' => 'https://Simple-E-commerce.test/auth/facebook/callback',
+        'client_id' => '344808800938382',
+        'client_secret' => 'd7bb7860b751cfe1bb5c0a0e5adf69c1',
+        'redirect' => 'https://simple-e-commerce.test/auth/facebook/callback',
+    ],
+
+    'github' => [
+        'client_id' => '09280ddb96c2356ec04e',
+        'client_secret' => '4d9d037fbd4f027277084e997120dac33363a97d',
+        'redirect' => 'https://simple-e-commerce.test/auth/github/callback',
     ],
 
 ];
