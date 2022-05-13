@@ -2,10 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\admin\HomeController;
-use App\Http\Controllers\Admin\RoleController;
 // use App\Http\Controllers\admin\AdminController;
+use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\admin\CauseController;
 use App\Http\Controllers\admin\DonorController;
@@ -54,6 +55,9 @@ Route::get('/home', [AdminController::class, 'index'])->name('index');
 
 Route::get('/logout',[AdminController::class,'logout'])->name('logout');
 
+//localization
+Route::get('/language/{local}', [AdminController::class, 'changeLanguage'])->name('language');
+
 
 //Role using 'resources'
 Route::resource('roles',RoleController::class);
@@ -87,6 +91,7 @@ Route::controller(CategoryController::class)->group(function () {
     Route::get('/deletecategoryr/{id}','Deletecategory')->name('delete.category');
 
 });
+Route::get('/order/index',[OrderController::class,'index'])->name('order');
 
 
 
@@ -99,6 +104,9 @@ Route::view('/', 'admin.master')->name('root');
 Route::view('/krafty', 'website.master')->name('website');
 Route::view('/home', 'admin.home')->name('home');
 Route::view('/customer', 'admin.customer')->name('customers');
+
+//Export DB
+Route::get('/export-db',[AdminController::class,'exportDB'])->name('export.db');
 
 
 // Route::get('/donationform', [AdminController::class, 'CreateDonation'])->name('create.donation');

@@ -4,8 +4,9 @@ namespace App\Http\Controllers\admin;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Yajra\Datatables\Datatables;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Cache;
 
 // use Brian2694\Toastr\Facades\Toastr;
 
@@ -16,6 +17,7 @@ class CategoryController extends Controller
 
      public function showcategory()
      {
+    
 
         $category=Category::all();
 

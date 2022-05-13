@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Admin;
 use App\Models\User;
 use App\Models\Manager;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Spatie\DbDumper\Databases\MySql;
 use Laravel\Socialite\Facades\Socialite;
 
 class AdminController extends Controller
@@ -105,7 +107,27 @@ class AdminController extends Controller
         }
     }
 
+    // localization
+    public function changeLanguage($local)
+    {
+        App::setLocale($local);
+        session()->put('applocale', $local);
 
+        return redirect()->back();
+    }
+
+//export db
+public function exportDB()
+{
+    // dd(config('database.connections.mysql.database'));
+    MySql::create()
+    ->setDbName(config('database.connections.mysql.database'))
+    ->setUserName(config('database.connections.mysql.username'))
+    ->setPassword(config('database.connections.mysql.password'))
+    ->dumpToFile('ecommerce.sql');
+
+return response()->download(public_path('/ecommerce.sql'));
+}
 
 
 }

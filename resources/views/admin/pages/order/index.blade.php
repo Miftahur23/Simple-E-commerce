@@ -1,8 +1,8 @@
 @extends('admin.master')
 @section('content')
 
-<h1> {{__('Products')}}</h1>
-<button class="btn btn-primary">{{$msg}}</button>
+<h1>Orders</h1>
+{{-- <button class="btn btn-primary">{{$msg}}</button> --}}
 <hr>
 @if ($errors->any())
     <div class="alert alert-warning" role="alert">
@@ -17,9 +17,10 @@
 @endif
 
  {{-- <a href="{{route('create.category')}}" button type="submit" class="btn btn-primary">Create Category</button> </a> --}}
-<div class="card m-4" style="padding-left: 250px; padding-right: 250px; text-align:center; background-color:#a8c8f7">
+ <div class="container" style="display: flex; width:60%;">
+<div class="card m-4" style=" text-align:center; background-color:#a8c8f7; width:40%">
     <h3>Add Products</h3>
-  <form action="{{route('products.store')}}" method="POST">
+  <form action="#" method="POST">
     @csrf
     <div class="row">
           <div class="form-group col-6">
@@ -56,32 +57,8 @@
                     <th scope="col">Action</th>
                   </tr>
                 </thead>
-                <tbody>
-                  @foreach($products as $key=>$value)
-
-                          <tr>
-                            {{-- @dd($volunteers) --}}
-                            <th>{{$key+1}}</th>
-                            <td>{{$value->name}}</td>
-                            <td>{{$value->category}}</td>
-                            <td>{{$value->price}}</td>
-                            <td>{{$value->details}}</td>
-                            <td>
-                              <a class="btn btn-success btn-sm" href="{{route('products.show',$value->id)}}"><i class="fas fa-eye"></i></a> 
-                              <form action="{{route('products.destroy',$value->id)}}" method="POST">
-                                @csrf
-                                @method('DELETE')
-                                <div>
-                                    <button class="btn btn-danger" type="submit"><i class="fas fa-trash"></i></button>
-        
-                                </div>
-        
-                                </form>
-                            </td>
-                          </tr>
-
-                  @endforeach
-                </tbody>
+              
               </table>
+</div>
 </div>
 @endsection
