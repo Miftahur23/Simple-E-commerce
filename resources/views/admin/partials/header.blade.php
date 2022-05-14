@@ -10,6 +10,18 @@
             <button class="btn btn-primary" id="btnNavbarSearch" type="button"><i class="fas fa-search"></i></button>
         </div>
     </form>
+
+    <label for="">Select Language</label>
+    <div class="col-md-4">
+        <select class="form-control" size="1" name="links" onchange="window.location.href=this.value;">
+            <option value="">Select language</option>
+            <option value="{{route('language','en')}}">EN</option>
+            <option value="{{route('language','bn')}}">BN</option>
+            <option value="{{route('language','ar')}}">AR</option>
+        </select>
+
+
+    </div>
     <!-- Navbar-->
     <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
         <li class="nav-item dropdown">

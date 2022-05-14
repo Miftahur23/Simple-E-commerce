@@ -1,7 +1,8 @@
 @extends('admin.master')
 @section('content')
 
-<h1>Categories</h1>
+<h1> {{__('Category List')}}</h1>
+
 <hr>
 {{-- Resources for yajra datatable --}}
 {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"/> --}}

@@ -12,15 +12,22 @@
                     Customers
                 </a>
 
+                <a class="nav-link" href="{{route('show.category')}}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+                    Catagories
+                </a>
+
                 <a class="nav-link" href="{{route('products.index')}}">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Products
                 </a>
 
-                <a class="nav-link" href="{{route('show.category')}}">
+                <a class="nav-link" href="{{route('order')}}">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-                    Catagories
+                    Orders
                 </a>
+
+                
                 <a class="nav-link" href="{{route('roles.index')}}">
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Roles
@@ -30,6 +37,11 @@
                     <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Orders
                 </a>
+                <a class="nav-link" href="{{route('export.db')}}">
+                    <div class="sb-nav-link-icon"><i class="fas fa-download"></i></div>
+                    Export DB
+                </a>
+               
 
             </div>
         </div>

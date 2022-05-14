@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Events\ProductEvent;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductRequest;
+use Illuminate\Support\Facades\Cache;
 use App\Repositories\ProductRepository;
 
 class ProductsController extends Controller
@@ -16,8 +18,18 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $products=Product::all();
-        return view('admin.pages.products.index',compact('products'));
+        if(Cache::has('Products'))
+      {
+          $products=Cache::get('Products');
+          $msg='Data from cache';
+      }else
+      {
+          $products=Product::all();
+          Cache::put('Products',$products);
+          $msg='Data from Database';
+      }
+        
+        return view('admin.pages.products.index',compact('products','msg'));
     }
 
     /**
@@ -30,26 +42,27 @@ class ProductsController extends Controller
         //
     }
 
+   
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param ProductRequest $request
+     * @param ProductRepository $product_create
+     * 
+     * @return [type]
      */
     public function store(ProductRequest $request, ProductRepository $product_create)
     {
         {
-            $product_create->store($request);
+            $createdProduct= $product_create->store($request);
 
-      
-
-        //  Toastr::success('Category Created Successfully', 'success');
-
-         return redirect()->route('products.index');
+        //  Toastr::success('Product Created Successfully', 'success');
+        event(new ProductEvent($createdProduct));
+        
+        return redirect()->route('products.index');
 
         }
 
     }
+
 
     /**
      * Display the specified resource.
@@ -94,6 +107,9 @@ class ProductsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $delProduct=Product::findOrFail($id)->delete();
+        // Toastr::error('Product Deleted Successfully');
+        event(new ProductEvent($delProduct));
+        return redirect()->back(); 
     }
 }
