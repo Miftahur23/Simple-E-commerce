@@ -20,6 +20,14 @@ class UsersTableSeeder extends Seeder
             'email'=>'admin@gmail.com',
             'password'=>bcrypt('1234'),
             'role_id'=>1,
+
+        ]);
+
+        DB::table('managers')->insert([
+            'name'=>'MANAGER',
+            'email'=>'manager@gmail.com',
+            'password'=>bcrypt('1234'),
+            'role_id'=>2,
         ]);
     }
 }
