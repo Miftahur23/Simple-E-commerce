@@ -1,6 +1,9 @@
 <?php
 
+use App\Models\User;
 use App\Models\Manager;
+use App\Models\Customer;
+
 
 return [
 
@@ -18,10 +21,6 @@ return [
     'defaults' => [
         'guard' => 'web',
         'passwords' => 'users',
-    ],
-    'manager' => [
-        'guard' => 'manager',
-        'passwords' => 'managers',
     ],
 
     /*
@@ -50,6 +49,10 @@ return [
             'driver' => 'session',
             'provider' => 'managers',
         ],
+        'customer' => [
+            'driver' => 'session',
+            'provider' => 'customers',
+        ],
     ],
 
     /*
@@ -70,14 +73,20 @@ return [
     */
 
     'providers' => [
-        'users' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\User::class,
-        ],
+
+            'users' => [
+                'driver' => 'eloquent',
+                'model' => App\Models\User::class,
+            ],
 
             'managers' => [
                 'driver' => 'eloquent',
                 'model' => App\Models\Manager::class,
+            ],
+
+            'customers' => [
+                'driver' => 'eloquent',
+                'model' => App\Models\Customer::class,
             ],
 
         // 'users' => [
@@ -110,6 +119,12 @@ return [
         ],
         'managers' => [
             'provider' => 'managers',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'customers' => [
+            'provider' => 'customers',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

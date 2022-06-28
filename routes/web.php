@@ -48,7 +48,7 @@ Route::get('auth/facebook/callback', [AdminController::class, 'loginWithFacebook
 Route::get('auth/github', [AdminController::class, 'githubRedirect'])->name('login.github');
 Route::get('auth/github/callback', [AdminController::class, 'loginWithGithub']);
 
-Route::group(['prefix'=>'admin','middleware'=>['auth:web,manager']],function(){
+Route::group(['prefix'=>'admin','middleware'=>['auth:web,,manager,customer']],function(){
 
 
 Route::get('/home', [AdminController::class, 'index'])->name('index');
@@ -112,4 +112,3 @@ Route::get('/export-db',[AdminController::class,'exportDB'])->name('export.db');
 // Route::get('/donationform', [AdminController::class, 'CreateDonation'])->name('create.donation');
 
 });
-
