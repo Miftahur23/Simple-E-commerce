@@ -6,6 +6,8 @@ use App\Events\ProductEvent;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductRequest;
+use App\Models\Manager;
+use App\Notifications\emailNotification;
 use Illuminate\Support\Facades\Cache;
 use App\Repositories\ProductRepository;
 
@@ -55,12 +57,13 @@ class ProductsController extends Controller
             $createdProduct= $product_create->store($request);
 
         //  Toastr::success('Product Created Successfully', 'success');
-        event(new ProductEvent($createdProduct));
         
-        return redirect()->route('products.index');
+            event(new ProductEvent($createdProduct));
 
+            $manager=Manager::find(1)->notify(new emailNotification());
+
+            return redirect()->route('products.index');
         }
-
     }
 
 
