@@ -14,8 +14,6 @@ use Laravel\Socialite\Facades\Socialite;
 class AdminController extends Controller
 {
 
-
-
     public function index()
     {
         return view('admin.master');
@@ -27,9 +25,20 @@ class AdminController extends Controller
     public function doLogin(Request $req)
     {
         $userInfo=$req->except('_token');
+        $guard=auth()->guard();
+        // dd($guard);
+        
         // dd($userInfo);
 
-        if(Auth::guard('web')->attempt($userInfo) || Auth::guard('manager')->attempt($userInfo)){
+        if(Auth::guard()->attempt($userInfo))
+        {
+            return view('admin.master')->with('message','Login successful.');
+        }
+        if( Auth::guard('customer')->attempt($userInfo)){
+            return view('admin.master')->with('message','Login successful.');
+
+        } if(Auth::guard('manager')->attempt($userInfo)){
+            
             return view('admin.master')->with('message','Login successful.');
         }
         return redirect()->back()->with('error','Invalid user credentials');
