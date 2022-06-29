@@ -60,7 +60,14 @@ class ProductsController extends Controller
         
             event(new ProductEvent($createdProduct));
 
-            $manager=Manager::find(1)->notify(new emailNotification());
+            // $manager=Manager::find(1)->notify(new emailNotification());
+
+            $managers=Manager::all();
+            //dd($managers);
+            foreach($managers as $manager)
+            {
+                $manager->notify(new emailNotification($manager->name,$manager->email));
+            }
 
             return redirect()->route('products.index');
         }
