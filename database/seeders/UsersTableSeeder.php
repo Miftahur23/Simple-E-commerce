@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Manager;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -29,5 +30,7 @@ class UsersTableSeeder extends Seeder
             'password'=>bcrypt('1234'),
             'role_id'=>2,
         ]);
+
+        Manager::factory()->count(10)->create();
     }
 }

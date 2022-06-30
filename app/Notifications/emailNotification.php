@@ -7,18 +7,22 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class emailNotification extends Notification
+class emailNotification extends Notification implements ShouldQueue
 {
     use Queueable;
+
+    public $name = '';
+    public $email = '';
 
     /**
      * Create a new notification instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($name,$email)
     {
-        //
+        $this->name = $name ; 
+        $this->email = $email ; 
     }
 
     /**
@@ -40,10 +44,13 @@ class emailNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
-                    ->line('Assalamualaikum!')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+        // return (new MailMessage)
+        //             ->line('Assalamualaikum!')
+        //             ->action('Notification Action', url('/'))
+        //             ->line('Thank you for using our application!');
+        $name = $this->name;
+        $email = $this->email;
+        return (new MailMessage) -> view ('admin.pages.mail.defaultMail',compact('name','email'));
     }
 
     /**
